@@ -1,7 +1,7 @@
 # mongeez-maven-plugin
 Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/mongeez))
 
-#### Current version: 0.9.1
+#### Current version: 0.9.2
 
 ### Usage
 
@@ -13,7 +13,7 @@ Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/m
             <plugin>
                 <groupId>pl.coderion.mongodb</groupId>
                 <artifactId>mongeez-maven-plugin</artifactId>
-                <version>0.9.1</version>
+                <version>0.9.2</version>
                 <configuration>
                     <propertyFile>src/main/mongeez/config.properties</propertyFile>
                     <changeLogFile>src/main/mongeez/mongeez.xml</changeLogFile>
@@ -53,7 +53,7 @@ Example usage:
             <plugin>
                 <groupId>pl.coderion.mongodb</groupId>
                 <artifactId>mongeez-maven-plugin</artifactId>
-                <version>0.9.1</version>
+                <version>0.9.2</version>
                 <configuration>
                     <changeLogFile>src/main/mongeez/mongeez.xml</changeLogFile>
                     <propertyFile>src/main/mongeez/config.properties</propertyFile>
