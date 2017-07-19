@@ -66,6 +66,24 @@ Example usage:
 
 Create _mongeez.xml_ with all change logs. See [how to use mongeez](https://github.com/mongeez/mongeez/wiki/How-to-use-mongeez).
 
+Example changelog file:
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <mongoChangeLog>
+        <changeSet changeId="1st change" author="coderion">
+            <script>
+                db.foo.createIndex({"foo": 1});
+            </script>
+        </changeSet>
+        <changeSet changeId="2nd change" author="coderion">
+            <script>
+                db.auditEvent.update({"foo": "bar"}, { $set: {"some": "any" } }, { multi: true });
+            </script>
+        </changeSet>
+    </mongoChangeLog>
+    ```
+
 ### Travis Continuous Integration Build Status
 
 [![Build Status](https://travis-ci.org/coderion/mongeez-maven-plugin.svg?branch=master)](https://travis-ci.org/coderion/mongeez-maven-plugin)
