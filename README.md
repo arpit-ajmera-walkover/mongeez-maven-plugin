@@ -60,7 +60,7 @@ Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/m
         </changeSet>
         <changeSet changeId="2nd change" author="coderion">
             <script>
-                db.auditEvent.update({"foo": "bar"}, { $set: {"some": "any" } }, { multi: true });
+                db.foo.update({"foo": "bar"}, { $set: {"some": "any" } }, { multi: true });
             </script>
         </changeSet>
     </mongoChangeLog>
