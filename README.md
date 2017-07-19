@@ -13,9 +13,9 @@ Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/m
             <plugin>
                 <groupId>pl.coderion.mongodb</groupId>
                 <artifactId>mongeez-maven-plugin</artifactId>
-                <version>0.9.2</version>
+                <version>0.9.3</version>
                 <configuration>
-                    <propertyFile>src/main/mongeez/config.properties</propertyFile>
+                    <dbName>test</dbName>
                     <changeLogFile>src/main/mongeez/mongeez.xml</changeLogFile>
                 </configuration>
             </plugin>
@@ -32,18 +32,16 @@ Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/m
 
 ### Configuration
 
-* ##### propertyFile
+* ##### optional db authentication
 
-    config.properties:
     ```
-    mongodb.host=localhost
-    mongodb.port=27017
-    mongodb.database.name=<dbname>
-    ```
-    (Optionally)
-    ```
-    mongo.user.name=<username>
-    mongo.user.password=<password>
+    <configuration>
+        <dbName>test</dbName>
+        <dbAuth>true</dbAuth>
+        <username>foo</username>
+        <password>bar</password>
+        <changeLogFile>src/main/mongeez/mongeez.xml</changeLogFile>
+    </configuration>
     ```
 
 Example usage:
@@ -53,10 +51,10 @@ Example usage:
             <plugin>
                 <groupId>pl.coderion.mongodb</groupId>
                 <artifactId>mongeez-maven-plugin</artifactId>
-                <version>0.9.2</version>
+                <version>0.9.3</version>
                 <configuration>
+                    <dbName>test</dbName>
                     <changeLogFile>src/main/mongeez/mongeez.xml</changeLogFile>
-                    <propertyFile>src/main/mongeez/config.properties</propertyFile>
                 </configuration>
             </plugin>
         </plugins>
