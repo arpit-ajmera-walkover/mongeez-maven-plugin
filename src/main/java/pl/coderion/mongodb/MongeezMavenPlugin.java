@@ -14,51 +14,40 @@ import org.sonatype.plexus.components.sec.dispatcher.SecDispatcherException;
 import org.springframework.core.io.FileSystemResource;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
 
 @Mojo(name = "update")
 public class MongeezMavenPlugin extends AbstractMojo {
 
-    @Parameter(property = "update.changeLogFile", defaultValue = "src/main/mongeez/mongeez.xml")
+    @Parameter(defaultValue = "false")
+    private boolean skip;
+
+    @Parameter(defaultValue = "src/main/mongeez/mongeez.xml")
     private File changeLogFile;
 
-    @Parameter(property = "db.hostname")
+    @Parameter(defaultValue = "localhost")
     private String dbHostName;
 
-    @Parameter(property = "db.name")
+    @Parameter(defaultValue = "test")
     private String dbName;
 
-    @Parameter(property = "db.port")
+    @Parameter(defaultValue = "27017")
     private String dbPort;
 
-    @Parameter(property = "db.password")
-    private String password;
+    @Parameter(defaultValue = "false")
+    private Boolean dbAuth;
 
-    @Parameter(property = "update.propertyFile", defaultValue = "src/main/mongeez/config.properties")
-    private File propertyFile;
+    @Parameter
+    private String username;
+
+    @Parameter
+    private String password;
 
     @Component(role = org.sonatype.plexus.components.sec.dispatcher.SecDispatcher.class, hint = "default")
     private SecDispatcher securityDispatcher;
 
-    @Parameter(defaultValue = "false")
-    private boolean skip;
-
-    @Parameter(property = "db.username")
-    private String username;
-
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
-
-            final Properties properties = new Properties();
-
-            if (null != propertyFile) {
-                final FileInputStream propertyFileInputStream = new FileInputStream(propertyFile);
-                properties.load(propertyFileInputStream);
-            }
 
             // use the property for parent projects (pom only) or for ignoring execution completely
             if (skip) {
@@ -74,18 +63,14 @@ public class MongeezMavenPlugin extends AbstractMojo {
                 final Mongeez mongeez = new Mongeez();
                 mongeez.setFile(new FileSystemResource(changeLogFile));
                 mongeez.setMongo(new Mongo(getDbHostName(), Integer.valueOf(getDbPort())));
-                mongeez.setAuth(new MongoAuth(getUsername(), getPassword(), getDbName()));
                 mongeez.setDbName(getDbName());
+
+                if (Boolean.TRUE.equals(getDbAuth())) {
+                    mongeez.setAuth(new MongoAuth(getUsername(), getPassword(), getDbName()));
+                }
+
                 mongeez.process();
             }
-        } catch (final FileNotFoundException e) {
-            getLog().error(String.format("Configuration file %s not found", propertyFile.getAbsolutePath()));
-            throw new RuntimeException();
-
-        } catch (final IOException e) {
-            getLog().error(String.format("An error occured during loading configuration file %s: %s",
-                    propertyFile.getAbsolutePath(), e.getMessage()));
-            throw new RuntimeException();
         } catch (final Exception e) {
             getLog().error(String.format("An unknown error occured: %s", e.getMessage()));
             throw new RuntimeException();
@@ -112,6 +97,10 @@ public class MongeezMavenPlugin extends AbstractMojo {
         return username;
     }
 
+    public Boolean getDbAuth() {
+        return dbAuth;
+    }
+
     public void setDbHostName(String dbHostName) {
         this.dbHostName = dbHostName;
     }
@@ -130,5 +119,9 @@ public class MongeezMavenPlugin extends AbstractMojo {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setDbAuth(Boolean dbAuth) {
+        this.dbAuth = dbAuth;
     }
 }
