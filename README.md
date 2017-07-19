@@ -34,7 +34,7 @@ Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/m
 
 * ##### optional db authentication
 
-    ```
+    ```xml
     <configuration>
         <dbName>test</dbName>
         <dbAuth>true</dbAuth>
@@ -46,6 +46,7 @@ Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/m
 
 Example usage:
 
+    ```xml
     <build>
         <plugins>
             <plugin>
@@ -59,6 +60,7 @@ Example usage:
             </plugin>
         </plugins>
     </build>
+    ```
 
 * ##### changeLogFile
 
