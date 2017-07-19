@@ -44,25 +44,7 @@ Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/m
     </configuration>
     ```
 
-Example usage:
-
-    ```xml
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>pl.coderion.mongodb</groupId>
-                <artifactId>mongeez-maven-plugin</artifactId>
-                <version>0.9.3</version>
-                <configuration>
-                    <dbName>test</dbName>
-                    <changeLogFile>src/main/mongeez/mongeez.xml</changeLogFile>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    ```
-
-* ##### changeLogFile
+* #### changeLogFile
 
 Create _mongeez.xml_ with all change logs. See [how to use mongeez](https://github.com/mongeez/mongeez/wiki/How-to-use-mongeez).
 
