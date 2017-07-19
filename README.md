@@ -1,7 +1,7 @@
 # mongeez-maven-plugin
 Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/mongeez))
 
-#### Current version: 0.9.2
+#### Current version: 0.9.3
 
 ### Usage
 
@@ -46,9 +46,9 @@ Maven plugin for MongoDB migrations (uses [Mongeez](https://github.com/mongeez/m
 
 * #### changeLogFile
 
-Create _mongeez.xml_ with all change logs. See [how to use mongeez](https://github.com/mongeez/mongeez/wiki/How-to-use-mongeez).
+    Create _mongeez.xml_ with all change logs. See [how to use mongeez](https://github.com/mongeez/mongeez/wiki/How-to-use-mongeez).
 
-Example changelog file:
+    Example changelog file:
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
